@@ -1,0 +1,24 @@
+.myfooter footer{
+  background-color: #1b1b1b;
+  padding: 20px 0;
+  text-align: center;
+  font-size: 18px;
+}
+
+
+
+.myfooter .ali{
+  background-color: teal;
+}
+
+.myfooter .fa-heart{
+  font-size: 22px !important;
+  margin-left: 5px;
+}
+
+
+
+
+ 
+
+

@@ -1,0 +1,21 @@
+.hide-when-mobile {
+
+  flex-direction: column;
+}
+
+
+p, button, a, footer, .fa-heart{
+  font-size: 17px !important;
+}
+
+
+.main-list {
+  padding: 10px 12px;
+
+}
+
+.logo{
+  font-size: 25px !important;
+}
+
+ 
