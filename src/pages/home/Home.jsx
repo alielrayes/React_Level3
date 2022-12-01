@@ -1,14 +1,14 @@
 import Header from "../../comp/header";
 import Footer from "../../comp/Footer";
 import Loading from "../../comp/Loading";
-import Erroe404 from '../erroe404';
+import Erroe404 from "../erroe404";
 import { Helmet } from "react-helmet-async";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firebase/config";
 import { Link } from "react-router-dom";
 import { sendEmailVerification } from "firebase/auth";
 // Level 3
-import './Home.css';
+import "./Home.css";
 
 const Home = () => {
   const [user, loading, error] = useAuthState(auth);
@@ -21,13 +21,9 @@ const Home = () => {
     });
   };
 
-
   if (error) {
     return <Erroe404 />;
   }
-
-
-
 
   if (loading) {
     return <Loading />;
@@ -38,9 +34,7 @@ const Home = () => {
       <>
         <Helmet>
           <title>HOME Page</title>
-          <style type="text/css">{`.Light main h1 span{color: #222}   `}
-          </style>
-
+          <style type="text/css">{`.Light main h1 span{color: #222}   `}</style>
         </Helmet>
 
         <Header />
@@ -68,8 +62,6 @@ const Home = () => {
   }
 
   if (user) {
-  
-
     if (!user.emailVerified) {
       return (
         <>
@@ -105,7 +97,6 @@ const Home = () => {
       );
     }
 
-
     if (user.emailVerified) {
       return (
         <>
@@ -115,15 +106,73 @@ const Home = () => {
 
           <Header />
 
-          <main>
-           
+          <main className="home">
+            {/* OPIONS (filtered data) */}
+            <section className="parent-of-btns flex mtt">
+              <button>Newest first</button>
+
+              <button>Oldest first</button>
+              <select id="browsers">
+                <option value="ddddd"> All Tasks </option>
+                <option value="dddddd"> Completed </option>
+                <option value="dddddd"> Not Completed </option>
+              </select>
+            </section>
+
+            {/* SHOW all tasks */}
+            <section className="flex all-tasks mt">
+              <article dir="auto" className="one-task">
+                <h2> New Task </h2>
+                <ul>
+                  <li>Sub task 1 </li>
+                  <li> Sub task 2</li>
+                </ul>
+
+                <p className="time">a day ago</p>
+              </article>
+
+              <article dir="auto" className="one-task">
+                <h2> New Task </h2>
+                <ul>
+                  <li>Sub task 1 </li>
+                  <li> Sub task 2</li>
+                </ul>
+
+                <p className="time">a day ago</p>
+              </article>
+
+              <article dir="auto" className="one-task">
+                <h2> New Task </h2>
+                <ul>
+                  <li>Sub task 1 </li>
+                  <li> Sub task 2</li>
+                </ul>
+
+                <p className="time">a day ago</p>
+              </article>
+
+              <article dir="auto" className="one-task">
+                <h2>شراء جوافة</h2>
+                <ul>
+                  <li>3 كيلوا جوافة من السوق</li>
+                  <li>3 كيلوا جوافة من السوق</li>
+                </ul>
+                <p className="time">a day agooo</p>
+              </article>
+            </section>
+
+            {/* Add new task BTN */}
+            <section className="mt">
+              <button className="add-task-btn">
+                Add new task <i className="fa-solid fa-plus"></i>
+              </button>
+            </section>
           </main>
 
           <Footer />
         </>
       );
     }
-
   }
 };
 
