@@ -11,6 +11,7 @@ import { auth } from "../../firebase/config";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./signin.css";
+import Modal from "shared/Modal";
 
 const Signin = () => {
   const navigate = useNavigate();
@@ -65,6 +66,16 @@ const Signin = () => {
   const forgotPassword = () => {
     setshowModal(true);
   };
+
+
+const closeModal = () => {
+  setshowModal(false)
+}
+
+
+
+
+
   return (
     <>
       <Helmet>
@@ -74,48 +85,7 @@ const Signin = () => {
 
       <main>
         {showModal && (
-          <div className="parent-of-model">
-            <form className={`modal`}>
-              <div
-                onClick={() => {
-                  setshowModal(false);
-                }}
-                className="close"
-              >
-                <i className="fa-solid fa-xmark"></i>
-              </div>
-
-              <input
-                onChange={(eo) => {
-                  setresetPass(eo.target.value);
-                }}
-                required
-                placeholder=" E-mail : "
-                type="email"
-              />
-              <button
-                onClick={(eo) => {
-                  eo.preventDefault();
-
-                  sendPasswordResetEmail(auth, resetPass)
-                    .then(() => {
-                      console.log("send email");
-                      setshowSendEmail(true);
-                    })
-                    .catch((error) => {
-                      // ..
-                    });
-                }}
-              >
-                Reset Password
-              </button>
-              {showSendEmail && (
-                <p className="check-email">
-                  Please check your email to reset your password.
-                </p>
-              )}
-            </form>
-          </div>
+         <Modal closeModal={closeModal}   />
         )}
 
         <form>

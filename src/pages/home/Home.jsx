@@ -9,8 +9,15 @@ import { Link } from "react-router-dom";
 import { sendEmailVerification } from "firebase/auth";
 // Level 3
 import "./Home.css";
+import Modal from "shared/Modal";
+import { useState } from "react";
 
 const Home = () => {
+
+
+
+
+
   const [user, loading, error] = useAuthState(auth);
   console.log(user);
 
@@ -20,6 +27,19 @@ const Home = () => {
       // ...
     });
   };
+
+
+
+    // LEVEL3
+    const [showModal, setshowModal] = useState(false);
+    const forgotPassword = () => {
+      setshowModal(true);
+    };
+  
+  
+  const closeModal = () => {
+    setshowModal(false)
+  }
 
   if (error) {
     return <Erroe404 />;
@@ -142,10 +162,14 @@ const Home = () => {
 
             {/* Add new task BTN */}
             <section className="mt">
-              <button className="add-task-btn">
+              <button onClick={() => {
+                setshowModal(true)
+              }} className="add-task-btn">
                 Add new task <i className="fa-solid fa-plus"></i>
               </button>
             </section>
+
+            {showModal   && <Modal closeModal={closeModal}   />}
           </main>
 
           <Footer />
