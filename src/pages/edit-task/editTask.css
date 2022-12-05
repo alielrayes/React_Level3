@@ -3,7 +3,8 @@
 ===================== 
 1-  title
 2- sub-task section
-3- Add-more BTN && Delete BTN */
+3- Add-more BTN && Delete BTN 
+** Colors for Light Theme **/
 
 .edit-task {
   min-height: calc(100vh - 133px);
@@ -102,4 +103,14 @@
 .edit-task .delete {
   border-radius: 5px;
   border: none;
+}
+
+/* ==============================
+** Colors for Light Theme **
+=================================*/
+.Light .edit-task .title-input,
+.Light .fa-pen-to-square,
+.Light label,
+.Light .time {
+  color: rgb(65, 71, 84);
 }
