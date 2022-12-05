@@ -5,18 +5,10 @@
 2- SHOW all tasks
 3- Add new task BTN*/
 
-
-
-
-
-
-
-
 /* ==============================
 1-  OPIONS (filtered data)
 =================================*/
 .home .parent-of-btns {
- 
 }
 
 .home .parent-of-btns button {
@@ -28,7 +20,7 @@
   margin-right: 15px;
 }
 
-.home select{
+.home select {
   background-color: #666;
   padding: 7px 14px;
   border-radius: 4px;
@@ -38,7 +30,6 @@
 2- SHOW all tasks
 =================================*/
 .home .all-tasks {
-
   justify-content: center;
   flex-wrap: wrap;
 }
@@ -52,11 +43,9 @@
   transition: 0.2s;
 }
 
-
 .home .all-tasks .one-task:hover {
-
-
   border-left: 8px solid antiquewhite;
+  cursor: pointer;
 }
 
 .home .all-tasks .one-task h2 {
@@ -70,7 +59,6 @@
   list-style-type: circle;
   line-height: 29px;
   font-size: 13px;
-  /* WRONG */
   text-align: start;
   margin: 0 11px;
 }
