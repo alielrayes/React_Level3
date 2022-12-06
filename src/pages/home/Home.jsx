@@ -13,11 +13,6 @@ import Modal from "shared/Modal";
 import { useState } from "react";
 
 const Home = () => {
-
-
-
-
-
   const [user, loading, error] = useAuthState(auth);
   console.log(user);
 
@@ -28,18 +23,15 @@ const Home = () => {
     });
   };
 
+  // LEVEL3
+  const [showModal, setshowModal] = useState(false);
+  const forgotPassword = () => {
+    setshowModal(true);
+  };
 
-
-    // LEVEL3
-    const [showModal, setshowModal] = useState(false);
-    const forgotPassword = () => {
-      setshowModal(true);
-    };
-  
-  
   const closeModal = () => {
-    setshowModal(false)
-  }
+    setshowModal(false);
+  };
 
   if (error) {
     return <Erroe404 />;
@@ -142,34 +134,66 @@ const Home = () => {
             {/* SHOW all tasks */}
             <section className="flex all-tasks mt">
               <article dir="auto" className="one-task">
-               <Link to={"/edit-task"}>
-               <h2> New Task </h2>
-                <ul>
-                  <li>Sub task 1 </li>
-                  <li> Sub task 2</li>
-                </ul>
+                <Link to={"/edit-task"}>
+                  <h2> New Task </h2>
+                  <ul>
+                    <li>Sub task 1 </li>
+                    <li> Sub task 2</li>
+                  </ul>
 
-                <p className="time">a day ago</p>
-               
-               </Link>
+                  <p className="time">a day ago</p>
+                </Link>
               </article>
-
- 
-
- 
- 
             </section>
 
             {/* Add new task BTN */}
             <section className="mt">
-              <button onClick={() => {
-                setshowModal(true)
-              }} className="add-task-btn">
+              <button
+                onClick={() => {
+                  setshowModal(true);
+                }}
+                className="add-task-btn"
+              >
                 Add new task <i className="fa-solid fa-plus"></i>
               </button>
             </section>
 
-            {showModal   && <Modal closeModal={closeModal}   />}
+            {showModal && (
+              <Modal closeModal={closeModal}>
+                <div style={{ textAlign: "left" }}>
+                  <input
+                    onChange={(eo) => {}}
+                    required
+                    placeholder=" Add title : "
+                    type="text"
+                  />
+
+                  <div>
+                    <input
+                      onChange={(eo) => {}}
+                      placeholder=" details "
+                      type="email"
+                    />
+
+                    <button
+                      onClick={(eo) => {
+                        eo.preventDefault();
+                      }}
+                    >
+                      Add
+                    </button>
+                  </div>
+
+                  <button
+                    onClick={(eo) => {
+                      eo.preventDefault();
+                    }}
+                  >
+                    Submit
+                  </button>
+                </div>
+              </Modal>
+            )}
           </main>
 
           <Footer />
