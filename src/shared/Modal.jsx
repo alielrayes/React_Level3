@@ -8,9 +8,7 @@ const Modal = ({ closeModal, children }) => {
       <Helmet>
         <style type="text/css">{`
           
-          
           .parent-of-model{
-
             position: fixed;
             top: 0;
             bottom: 0;
@@ -22,11 +20,7 @@ const Modal = ({ closeModal, children }) => {
             align-items: center;
             justify-content: center;
           }
-          
-          
-          
-          
-          
+
           .modal{
             background-color: whitesmoke;
             width: 400px;
@@ -36,17 +30,15 @@ const Modal = ({ closeModal, children }) => {
             align-items: center;
             justify-content: center;
             position: fixed;
-            
-          
-            // transition: 1s;
-          
-          
-            scale: 1;
-          transform: translateY(0);
+            animation: mymove  0.8s            ;
           }
           
           
-          
+          @keyframes mymove {
+            0%   {  scale: 0; transform: translateY(-100vh);}
+        
+            100% {  scale: 1; transform: translateY(0);}
+          } 
           
           
           
