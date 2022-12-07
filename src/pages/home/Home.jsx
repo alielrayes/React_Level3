@@ -4,35 +4,28 @@ import Loading from "../../comp/Loading";
 import Erroe404 from "../erroe404";
 import { Helmet } from "react-helmet-async";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "../../firebase/config";
+import { auth, db } from "../../firebase/config";
 import { Link } from "react-router-dom";
 import { sendEmailVerification } from "firebase/auth";
 // Level 3
 import "./Home.css";
 import Modal from "shared/Modal";
 import { useState } from "react";
+import { doc, setDoc } from "firebase/firestore"; 
+
+
 
 const Home = () => {
   const [array, setarray] = useState([]);
   const [subTask, setsubTask] = useState("");
 
-const addBTN = () => {
-  array.push(subTask)
-  console.log(array)
-  setsubTask("")
-}
-
-
-  
-
-
-
-
-
-
+  const addBTN = () => {
+    array.push(subTask);
+    console.log(array);
+    setsubTask("");
+  };
 
   const [user, loading, error] = useAuthState(auth);
-
 
   const sendAgain = () => {
     sendEmailVerification(auth.currentUser).then(() => {
@@ -189,8 +182,7 @@ const addBTN = () => {
                   <div>
                     <input
                       onChange={(eo) => {
-
-                        setsubTask(eo.target.value)
+                        setsubTask(eo.target.value);
                       }}
                       placeholder=" details "
                       type="email"
@@ -200,7 +192,7 @@ const addBTN = () => {
                     <button
                       onClick={(eo) => {
                         eo.preventDefault();
-                        addBTN()
+                        addBTN();
                       }}
                     >
                       Add
@@ -214,8 +206,20 @@ const addBTN = () => {
                   </ul>
 
                   <button
-                    onClick={(eo) => {
+                    onClick={  async    (eo) => {
                       eo.preventDefault();
+
+
+                      console.log("waiting.............")
+                    
+                      await setDoc(doc(db, "Ali Hassan", "test123"), {
+                        title: dddddd,
+                        detatils: array,
+  
+                      });  
+
+                      console.log("done...............")
+
                     }}
                   >
                     Submit
