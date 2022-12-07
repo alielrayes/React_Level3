@@ -14,13 +14,25 @@ import { useState } from "react";
 
 const Home = () => {
   const [array, setarray] = useState([]);
+  const [subTask, setsubTask] = useState("");
+
+const addBTN = () => {
+  array.push(subTask)
+  console.log(array)
+  setsubTask("")
+}
+
+
+  
+
+
 
 
 
 
 
   const [user, loading, error] = useAuthState(auth);
-  console.log(user);
+
 
   const sendAgain = () => {
     sendEmailVerification(auth.currentUser).then(() => {
@@ -176,19 +188,30 @@ const Home = () => {
 
                   <div>
                     <input
-                      onChange={(eo) => {}}
+                      onChange={(eo) => {
+
+                        setsubTask(eo.target.value)
+                      }}
                       placeholder=" details "
                       type="email"
+                      value={subTask}
                     />
 
                     <button
                       onClick={(eo) => {
                         eo.preventDefault();
+                        addBTN()
                       }}
                     >
                       Add
                     </button>
                   </div>
+
+                  <ul>
+                    {array.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
 
                   <button
                     onClick={(eo) => {

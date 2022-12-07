@@ -86,3 +86,15 @@
 .home .add-task-btn .fa-plus {
   font-size: 14px;
 }
+
+
+/* ==============================
+4- Modal
+=================================*/
+.home .modal li{
+  font-size: 13px;
+  color: #333;
+  list-style-type: circle;
+  list-style-position: inside;
+  margin-bottom: 6px;
+}
