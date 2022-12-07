@@ -12,6 +12,17 @@ import { deleteUser } from "firebase/auth";
 const Profile = () => {
   const [user, loading, error] = useAuthState(auth);
 
+
+
+
+
+
+
+
+
+
+
+
   const navigate = useNavigate();
   useEffect(() => {
     if (!user && !loading) {
@@ -44,7 +55,7 @@ const Profile = () => {
   if (error) {
     return (
       <div>
-        <p>Error: {error}</p>
+        <p>Error: {error.message}</p>
       </div>
     );
   }

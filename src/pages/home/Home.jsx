@@ -13,6 +13,12 @@ import Modal from "shared/Modal";
 import { useState } from "react";
 
 const Home = () => {
+  const [array, setarray] = useState([]);
+
+
+
+
+
   const [user, loading, error] = useAuthState(auth);
   console.log(user);
 
