@@ -22,9 +22,6 @@ const Home = () => {
     });
   };
 
-
-
-
   // ===============================
   //    FUNCTIONS of Modal
   // ===============================
@@ -37,6 +34,9 @@ const Home = () => {
 
   const closeModal = () => {
     setshowModal(false);
+    settitle("")
+    setarray([])
+
   };
 
   const titleInput = (eo) => {
@@ -49,7 +49,11 @@ const Home = () => {
 
   const addBTN = (eo) => {
     eo.preventDefault();
-    array.push(subTask);
+
+    if (!array.includes(subTask)) {
+      array.push(subTask);
+    }
+
     console.log(array);
     setsubTask("");
   };
@@ -60,8 +64,10 @@ const Home = () => {
     const taskId = new Date().getTime();
     await setDoc(doc(db, user.uid, `${taskId}`), {
       title: taskTitle,
-      detatils: array,
+      details: array,
       id: taskId,
+      completed: false
+
     });
     setshowLoading(false);
     settitle("");

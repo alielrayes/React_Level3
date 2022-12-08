@@ -11,8 +11,7 @@ const HomeModal = ({
   taskTitle,
   subTask,
   array,
-  showLoading
-
+  showLoading,
 }) => {
   return (
     <Modal closeModal={closeModal}>

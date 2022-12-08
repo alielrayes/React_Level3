@@ -190,3 +190,30 @@ span {
     opacity: 1;
   }
 }
+
+
+
+/* 
+Scroll
+*/
+::-webkit-scrollbar {
+  width: 1.1rem;
+ }
+ 
+::-webkit-scrollbar-track {
+  border: 7px solid #232943;
+  box-shadow: inset 0 0 2.5px 2px rgba(0, 0, 0, 0.5);
+  border-radius: 1rem;
+  }
+ 
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, #858585, #3c3c3c);
+  border-radius: 1rem;
+}
+ 
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(270deg, grey, #3d4a59, grey);
+}
+ 
+/* for Firefox */
+ html {scrollbar-color: grey #3d4a59;} 
