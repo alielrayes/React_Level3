@@ -12,6 +12,7 @@ import "./Home.css";
 import { useState } from "react";
 import { doc, setDoc } from "firebase/firestore";
 import HomeModal from "./modal";
+import AllTasksSection from "./AllTasksSection";
 
 const Home = () => {
   const [user, loading, error] = useAuthState(auth);
@@ -34,9 +35,8 @@ const Home = () => {
 
   const closeModal = () => {
     setshowModal(false);
-    settitle("")
-    setarray([])
-
+    settitle("");
+    setarray([]);
   };
 
   const titleInput = (eo) => {
@@ -66,8 +66,7 @@ const Home = () => {
       title: taskTitle,
       details: array,
       id: taskId,
-      completed: false
-
+      completed: false,
     });
     setshowLoading(false);
     settitle("");
@@ -180,19 +179,7 @@ const Home = () => {
             </section>
 
             {/* SHOW all tasks */}
-            <section className="flex all-tasks mt">
-              <article dir="auto" className="one-task">
-                <Link to={"/edit-task"}>
-                  <h2> New Task </h2>
-                  <ul>
-                    <li>Sub task 1 </li>
-                    <li> Sub task 2</li>
-                  </ul>
-
-                  <p className="time">a day ago</p>
-                </Link>
-              </article>
-            </section>
+            <AllTasksSection user={user} />
 
             {/* Add new task BTN */}
             <section className="mt">
