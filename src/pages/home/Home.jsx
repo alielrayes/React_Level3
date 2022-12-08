@@ -11,19 +11,12 @@ import { sendEmailVerification } from "firebase/auth";
 import "./Home.css";
 import Modal from "shared/Modal";
 import { useState } from "react";
-import { doc, setDoc } from "firebase/firestore"; 
-
-
+import { doc, setDoc } from "firebase/firestore";
+import ReactLoading from "react-loading";
 
 const Home = () => {
- 
-
-
-
-
-
-
-
+  const [showLoading, setshowLoading] = useState(false);
+  const [showMessage, setshowMessage] = useState(false);
 
   const [taskTitle, settitle] = useState("");
   const [array, setarray] = useState([]);
@@ -36,7 +29,6 @@ const Home = () => {
   };
 
   const [user, loading, error] = useAuthState(auth);
-
 
   const sendAgain = () => {
     sendEmailVerification(auth.currentUser).then(() => {
@@ -182,12 +174,11 @@ const Home = () => {
 
             {showModal && (
               <Modal closeModal={closeModal}>
-                <div style={{ textAlign: "left" }}>
+                <div className="model-content">
                   <input
-                  value={taskTitle}
+                    value={taskTitle}
                     onChange={(eo) => {
-
-                      settitle(eo.target.value)
+                      settitle(eo.target.value);
                     }}
                     required
                     placeholder=" Add title : "
@@ -221,33 +212,52 @@ const Home = () => {
                   </ul>
 
                   <button
-                    onClick={  async    (eo) => {
+                  style={{marginBottom: "33px"}}
+                    onClick={async (eo) => {
                       eo.preventDefault();
-
-
-                      console.log("waiting.............")
-                    
-
-                      const taskId = new Date().getTime()
-
-                      await setDoc(doc(db, user.uid, `${taskId}` ), {
+                      setshowLoading(true);
+                      const taskId = new Date().getTime();
+                      await setDoc(doc(db, user.uid, `${taskId}`), {
                         title: taskTitle,
                         detatils: array,
-                        id: taskId
-                      });  
+                        id: taskId,
+                      });
+                      setshowLoading(false);
+                      settitle("");
+                      setarray([]);
 
-                      console.log("done...............")
+                      setshowModal(false);
+                      setshowMessage(true);
 
-                      settitle("")
-                      setarray([])
-
+                      setTimeout(() => {
+                        setshowMessage(false);
+                      }, 4000);
                     }}
                   >
-                    Submit
+                    {showLoading ? (
+                      <ReactLoading
+                        type={"spin"}
+                        color={"white"}
+                        height={20}
+                        width={20}
+                      />
+                    ) : (
+                      "Submit"
+                    )}
                   </button>
                 </div>
               </Modal>
             )}
+
+            <p
+              style={{
+                right: showMessage ? "20px" : "-100vw",
+              }}
+              className="show-message"
+            >
+              Task added successfully{" "}
+              <i className="fa-regular fa-circle-check"></i>
+            </p>
           </main>
 
           <Footer />

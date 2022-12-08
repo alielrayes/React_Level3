@@ -87,14 +87,37 @@
   font-size: 14px;
 }
 
-
 /* ==============================
 4- Modal
 =================================*/
-.home .modal li{
+.home .model-content {
+  margin-top: 55px;
+
+  height: 100%;
+  text-align: left;
+}
+
+.home .modal li {
   font-size: 13px;
   color: #333;
   list-style-type: circle;
   list-style-position: inside;
   margin-bottom: 6px;
+}
+
+.home .show-message {
+  background-color: whitesmoke;
+  font-size: 18px;
+  color: #1b1b1b;
+  padding: 8px 12px;
+  font-weight: normal;
+  border-radius: 5px;
+  position: fixed;
+  top: 100px;
+  transition: 1s;
+}
+
+.home .fa-circle-check {
+  color: rgb(30, 200, 200);
+  margin-left: 5px;
 }

@@ -31,7 +31,7 @@ const Modal = ({ closeModal, children }) => {
             justify-content: center;
             position: fixed;
             animation: mymove  0.8s;
-            overflow-y: scroll;
+            overflow-y: auto;
 
           }
           
