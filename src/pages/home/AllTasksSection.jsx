@@ -4,6 +4,7 @@ import { useCollection } from "react-firebase-hooks/firestore";
 import { collection } from "firebase/firestore";
 import { db } from "../../firebase/config";
 import ReactLoading from "react-loading";
+import Moment from "react-moment";
 
 const AllTasksSection = ({ user }) => {
   const [value, loading, error] = useCollection(collection(db, user.uid));
@@ -40,7 +41,9 @@ const AllTasksSection = ({ user }) => {
                   })}
                 </ul>
 
-                <p className="time">a day ago</p>
+                <p className="time">
+                <Moment fromNow date={item.data().id} />
+                </p>
               </Link>
             </article>
           );
