@@ -21,8 +21,7 @@ const AllTasksSection = ({ user }) => {
   }
 
   if (value) {
-
-console.log(value.docs.length);
+    console.log(value.docs.length);
 
     return (
       <section className="flex all-tasks mt">
@@ -32,8 +31,13 @@ console.log(value.docs.length);
               <Link to={"/edit-task"}>
                 <h2> {item.data().title} </h2>
                 <ul>
-                  <li>Sub task 1 </li>
-                  <li> Sub task 2</li>
+                  {item.data().details.map((item, index) => {
+                    if (index < 2) {
+                      return <li> {item} </li>;
+                    } else {
+                      return false
+                    }
+                  })}
                 </ul>
 
                 <p className="time">a day ago</p>

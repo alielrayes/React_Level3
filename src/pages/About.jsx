@@ -44,9 +44,9 @@ const About = () => {
           </Helmet>
           <Header />
           <main>
-            {array.map((item) => (
+            {array.map((item, index) => (
               <div key={item}>
-                <h3> {item} </h3>
+                <h3> {index+1} - {item} </h3>
               </div>
             ))}
           </main>

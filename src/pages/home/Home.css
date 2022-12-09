@@ -41,6 +41,8 @@
   height: 141px;
   border-radius: 5px;
   transition: 0.2s;
+
+  position: relative;
 }
 
 .home .all-tasks .one-task:hover {
@@ -63,11 +65,14 @@
   margin: 0 11px;
 }
 .home .all-tasks .one-task .time {
-  font-size: 11px;
-  text-align: right;
-  margin-right: 9px;
+  font-size: 12px;
+  font-weight: normal;
+
   color: rgb(164, 213, 255);
-  line-height: 19px;
+
+  position: absolute;
+  bottom: 7px;
+  right: 9px;
 }
 
 /* ==============================
