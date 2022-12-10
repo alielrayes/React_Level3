@@ -81,7 +81,8 @@ const Home = () => {
   };
 
   if (error) {
-    return <Erroe404 />;
+    return <h1>Error : {error.message}</h1>;
+    
   }
 
   if (loading) {
