@@ -4,7 +4,7 @@ import { collection } from "firebase/firestore";
 import { db } from "../../firebase/config";
 
 
-const Btnssection = ({user}) => {
+const Btnssection = ({user, stringId}) => {
   const [value, loading, error] = useCollection(collection(db, user.uid));
   return (
     <section className="center mtt">

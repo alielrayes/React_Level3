@@ -10,9 +10,13 @@ import Loading from "comp/Loading";
 import TitleSection from "./1-TitleSection";
 import SubTasksSection from "./2-SubTasksSection";
 import Btnssection from "./3-Btnssection";
+import { useParams } from "react-router-dom";
 
 const EditTask = () => {
   const [user, loading, error] = useAuthState(auth);
+  
+  let { stringId } = useParams();
+
 
   // 
 
@@ -34,14 +38,14 @@ const EditTask = () => {
         <Header />
         <div className="edit-task">
           {/* Title */}
-          <TitleSection user={user} />
+          <TitleSection user={user} stringId={stringId} />
 
           {/* Sub-tasks section */}
-          <SubTasksSection user={user} />
+          <SubTasksSection user={user} stringId={stringId} />
 
           {/* Add-more BTN && Delete BTN */}
 
-          <Btnssection user={user} />
+          <Btnssection user={user} stringId={stringId} />
         </div>
 
         <Footer />

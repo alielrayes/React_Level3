@@ -23,7 +23,7 @@ const router = createBrowserRouter([
   },
 
   {
-    path: "/edit-task/:id",
+    path: "/edit-task/:stringId",
     element: <EditTask />,
   },
 

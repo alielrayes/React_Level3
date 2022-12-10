@@ -2,17 +2,23 @@ import React from "react";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { collection } from "firebase/firestore";
 import { db } from "../../firebase/config";
+import { useParams } from "react-router-dom";
 
 
-const TitleSection = ({user}) => {
+const TitleSection = ({user, stringId}) => {
 
   const [value, loading, error] = useCollection(collection(db, user.uid));
-  console.log(value);
+
+ 
+  console.log(stringId);
+
+
+
   return (
     <section className="title center">
       <h1>
         <input
-          value={"ali hassan"}
+          defaultValue={"ali hassan"}
           className="title-input center"
           type="text"
         />
