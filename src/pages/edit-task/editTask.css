@@ -47,9 +47,10 @@
   justify-content: space-between;
 }
 
-.edit-task .time time {
-  font-size: 12px;
-  color: rgb(164, 213, 255);
+.edit-task .time time, .edit-task p.time   {
+  font-size: 14px;
+  color: rgb(248, 172, 115);
+  letter-spacing: 1px;
 }
 
 .edit-task #checkbox {

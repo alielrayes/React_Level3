@@ -8,14 +8,17 @@ const SubTasksSection = ({ user, stringId }) => {
   const [value, loading, error] = useDocument(doc(db, user.uid, stringId));
 
   if (value) {
+    console.log(value.data().completed);
     return (
       <section className="sub-task mtt">
         <div className="parent-time">
           <p className="time">
-          <Moment fromNow date={value.data().id} />
+              Created:    <Moment fromNow date={value.data().id} />
           </p>
           <div>
-            <input id="checkbox" type="checkbox" />
+            <input onChange={() => {
+              
+            }} checked={value.data().completed} id="checkbox" type="checkbox" />
             <label htmlFor="checkbox">Completed </label>
           </div>
         </div>
@@ -23,7 +26,7 @@ const SubTasksSection = ({ user, stringId }) => {
         <ul>
           {value.data().details.map((item) => {
             return (
-              <li className="card-task flex">
+              <li key={item} className="card-task flex">
                 <p> {item} </p>
                 <i className="fa-solid fa-trash"></i>
               </li>
