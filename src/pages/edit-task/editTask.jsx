@@ -18,7 +18,6 @@ const EditTask = () => {
   const [user, loading, error] = useAuthState(auth);
   let { stringId } = useParams();
 
-
   // ======================
   // 1- Title Section
   // ======================
@@ -29,12 +28,21 @@ const EditTask = () => {
     });
   };
 
-
-
   // ======================
   // 2- Sub-Task Section
   // ======================
-  const completedCheckbox = (eo) => {};
+  const completedCheckbox =  async(eo) => {
+    if (eo.target.checked) {
+      await updateDoc(doc(db, user.uid, stringId), {
+        completed: true
+      });
+      
+    } else {
+      await updateDoc(doc(db, user.uid, stringId), {
+        completed: false
+      });
+    }
+  };
 
   const trashIcon = (eo) => {};
 
@@ -42,15 +50,12 @@ const EditTask = () => {
   // 3- BTNs Section
   // ======================
   const addMoreBTN = (eo) => {
-    eo.preventDefault()
+    eo.preventDefault();
   };
 
   const deleteBTN = (eo) => {
-    eo.preventDefault()
+    eo.preventDefault();
   };
-
-
-  
 
   if (error) {
     return <h1>Error : {error.message}</h1>;
@@ -77,7 +82,7 @@ const EditTask = () => {
           />
 
           {/* Sub-tasks section */}
-          <SubTasksSection user={user} stringId={stringId} />
+          <SubTasksSection user={user} stringId={stringId} completedCheckbox={completedCheckbox} />
 
           {/* Add-more BTN && Delete BTN */}
 

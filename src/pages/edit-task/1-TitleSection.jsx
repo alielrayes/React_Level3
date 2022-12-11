@@ -6,9 +6,6 @@ import { db } from "../../firebase/config";
 const TitleSection = ({ user, stringId, titleInput }) => {
   const [value, loading, error] = useDocument(doc(db, user.uid, stringId));
 
-if (value) {
-  console.log(value.data());
-}
 
 if (value) {
   return (
