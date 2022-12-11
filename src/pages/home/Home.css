@@ -64,7 +64,7 @@
   text-align: start;
   margin: 0 11px;
 }
-.home .all-tasks .one-task .time {
+.home .all-tasks .one-task .time time {
   font-size: 12px;
   font-weight: normal;
 

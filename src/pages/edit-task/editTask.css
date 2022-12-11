@@ -47,7 +47,7 @@
   justify-content: space-between;
 }
 
-.edit-task .time {
+.edit-task .time time {
   font-size: 12px;
   color: rgb(164, 213, 255);
 }

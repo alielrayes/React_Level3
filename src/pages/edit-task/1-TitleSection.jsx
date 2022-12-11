@@ -1,24 +1,21 @@
 import React from "react";
-import { useCollection } from "react-firebase-hooks/firestore";
-import { collection } from "firebase/firestore";
+import { useDocument } from "react-firebase-hooks/firestore";
+import { doc } from "firebase/firestore";
 import { db } from "../../firebase/config";
-import { useParams } from "react-router-dom";
 
+const TitleSection = ({ user, stringId }) => {
+  const [value, loading, error] = useDocument(doc(db, user.uid, stringId));
 
-const TitleSection = ({user, stringId}) => {
+if (value) {
+  console.log(value.data());
+}
 
-  const [value, loading, error] = useCollection(collection(db, user.uid));
-
- 
-  console.log(stringId);
-
-
-
+if (value) {
   return (
     <section className="title center">
       <h1>
         <input
-          defaultValue={"ali hassan"}
+          defaultValue={value.data().title}
           className="title-input center"
           type="text"
         />
@@ -26,6 +23,7 @@ const TitleSection = ({user, stringId}) => {
       </h1>
     </section>
   );
+}
 };
 
 export default TitleSection;

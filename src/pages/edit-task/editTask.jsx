@@ -14,11 +14,10 @@ import { useParams } from "react-router-dom";
 
 const EditTask = () => {
   const [user, loading, error] = useAuthState(auth);
-  
+
   let { stringId } = useParams();
 
-
-  // 
+  //
 
   if (error) {
     return <h1>Error : {error.message}</h1>;

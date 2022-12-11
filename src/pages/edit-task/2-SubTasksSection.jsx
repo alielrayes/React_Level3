@@ -1,34 +1,38 @@
 import React from "react";
-import { useCollection } from "react-firebase-hooks/firestore";
-import { collection } from "firebase/firestore";
+import { useDocument } from "react-firebase-hooks/firestore";
+import { doc } from "firebase/firestore";
 import { db } from "../../firebase/config";
+import Moment from "react-moment";
 
+const SubTasksSection = ({ user, stringId }) => {
+  const [value, loading, error] = useDocument(doc(db, user.uid, stringId));
 
-const SubTasksSection = ({user, stringId}) => {
-  const [value, loading, error] = useCollection(collection(db, user.uid));
-  return (
-    <section className="sub-task mtt">
-      <div className="parent-time">
-        <p className="time">Created: 6 days ago</p>
-        <div>
-          <input id="checkbox" type="checkbox" />
-          <label htmlFor="checkbox">Completed </label>
+  if (value) {
+    return (
+      <section className="sub-task mtt">
+        <div className="parent-time">
+          <p className="time">
+          <Moment fromNow date={value.data().id} />
+          </p>
+          <div>
+            <input id="checkbox" type="checkbox" />
+            <label htmlFor="checkbox">Completed </label>
+          </div>
         </div>
-      </div>
 
-      <ul>
-        <li className="card-task flex">
-          <p> Sub taskk </p>
-          <i className="fa-solid fa-trash"></i>
-        </li>
-
-        <li className="card-task flex">
-          <p> Sub taskk </p>
-          <i className="fa-solid fa-trash"></i>
-        </li>
-      </ul>
-    </section>
-  );
+        <ul>
+          {value.data().details.map((item) => {
+            return (
+              <li className="card-task flex">
+                <p> {item} </p>
+                <i className="fa-solid fa-trash"></i>
+              </li>
+            );
+          })}
+        </ul>
+      </section>
+    );
+  }
 };
 
 export default SubTasksSection;
