@@ -11,13 +11,46 @@ import TitleSection from "./1-TitleSection";
 import SubTasksSection from "./2-SubTasksSection";
 import Btnssection from "./3-Btnssection";
 import { useParams } from "react-router-dom";
+import { doc, updateDoc } from "firebase/firestore";
+import { db } from "../../firebase/config";
 
 const EditTask = () => {
   const [user, loading, error] = useAuthState(auth);
-
   let { stringId } = useParams();
 
-  //
+
+  // ======================
+  // 1- Title Section
+  // ======================
+  const titleInput = async (eo) => {
+    await updateDoc(doc(db, user.uid, stringId), {
+      // @ts-ignore
+      title: eo.target.value,
+    });
+  };
+
+
+
+  // ======================
+  // 2- Sub-Task Section
+  // ======================
+  const completedCheckbox = (eo) => {};
+
+  const trashIcon = (eo) => {};
+
+  // ======================
+  // 3- BTNs Section
+  // ======================
+  const addMoreBTN = (eo) => {
+    eo.preventDefault()
+  };
+
+  const deleteBTN = (eo) => {
+    eo.preventDefault()
+  };
+
+
+  
 
   if (error) {
     return <h1>Error : {error.message}</h1>;
@@ -37,7 +70,11 @@ const EditTask = () => {
         <Header />
         <div className="edit-task">
           {/* Title */}
-          <TitleSection user={user} stringId={stringId} />
+          <TitleSection
+            user={user}
+            stringId={stringId}
+            titleInput={titleInput}
+          />
 
           {/* Sub-tasks section */}
           <SubTasksSection user={user} stringId={stringId} />

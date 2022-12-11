@@ -1,9 +1,9 @@
 import React from "react";
 import { useDocument } from "react-firebase-hooks/firestore";
-import { doc } from "firebase/firestore";
+import { doc, updateDoc  } from "firebase/firestore";
 import { db } from "../../firebase/config";
 
-const TitleSection = ({ user, stringId }) => {
+const TitleSection = ({ user, stringId, titleInput }) => {
   const [value, loading, error] = useDocument(doc(db, user.uid, stringId));
 
 if (value) {
@@ -15,6 +15,9 @@ if (value) {
     <section className="title center">
       <h1>
         <input
+        onChange={ async (eo) => {
+          titleInput(eo)
+        }}
           defaultValue={value.data().title}
           className="title-input center"
           type="text"
