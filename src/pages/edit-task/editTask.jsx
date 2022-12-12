@@ -20,9 +20,6 @@ const EditTask = () => {
   const [user, loading, error] = useAuthState(auth);
   let { stringId } = useParams();
   const navigate = useNavigate();
- 
-
-
 
   // ======================
   // 1- Title Section
@@ -62,7 +59,7 @@ const EditTask = () => {
   const deleteBTN = async (eo) => {
     setshowData(true);
     await deleteDoc(doc(db, user.uid, stringId));
-    navigate("/");
+    navigate("/", { replace: true });
   };
 
   if (error) {
