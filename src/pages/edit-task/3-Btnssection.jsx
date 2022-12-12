@@ -6,6 +6,7 @@ import { db } from "../../firebase/config";
 const Btnssection = ({ user, stringId, deleteBTN }) => {
   const [value, loading, error] = useCollection(collection(db, user.uid));
 
+if (value) {
   return (
     <section className="center mt">
       <div>
@@ -20,6 +21,7 @@ const Btnssection = ({ user, stringId, deleteBTN }) => {
       </div>
     </section>
   );
+}
 };
 
 export default Btnssection;
