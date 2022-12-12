@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useDocument } from "react-firebase-hooks/firestore";
 import { deleteField, doc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase/config";
@@ -7,7 +7,11 @@ import { async } from "@firebase/util";
 
 const TitleSection = ({ user, stringId, titleInput }) => {
   const [value, loading, error] = useDocument(doc(db, user.uid, stringId));
+  const inputElement = useRef(null);
 
+
+
+  
   if (error) {
     return (
       <main>
@@ -29,6 +33,7 @@ const TitleSection = ({ user, stringId, titleInput }) => {
       <section className="title center">
         <h1>
           <input
+          ref={inputElement}
             onChange={async (eo) => {
               titleInput(eo);
             }}
@@ -36,7 +41,9 @@ const TitleSection = ({ user, stringId, titleInput }) => {
             className="title-input center"
             type="text"
           />
-          <i className="fa-regular fa-pen-to-square"></i>
+          <i onClick={() => {
+            inputElement.current.focus()
+          }} className="fa-regular fa-pen-to-square"></i>
         </h1>
 
 

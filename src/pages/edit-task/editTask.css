@@ -26,6 +26,7 @@
 .edit-task .fa-pen-to-square {
   font-size: 18px;
   transition: 0.2s;
+  margin-left: 11px;
 }
 
 .edit-task .fa-pen-to-square:hover {
