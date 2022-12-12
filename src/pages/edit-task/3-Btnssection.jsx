@@ -15,7 +15,7 @@ if (value) {
             deleteBTN();
           }}
           className="delete"
-        >
+        > 
           Delete task
         </button>
       </div>
