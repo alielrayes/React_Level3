@@ -11,7 +11,7 @@ import TitleSection from "./1-TitleSection";
 import SubTasksSection from "./2-SubTasksSection";
 import Btnssection from "./3-Btnssection";
 import { useParams } from "react-router-dom";
-import { doc, updateDoc } from "firebase/firestore";
+import { arrayRemove, doc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase/config";
 
 const EditTask = () => {
@@ -44,14 +44,18 @@ const EditTask = () => {
     }
   };
 
-  const trashIcon = (eo) => {};
+  const trashIcon = async (item) => {
+    await updateDoc(doc(db, user.uid, stringId), {
+      details: arrayRemove(item),
+   });
+  };
+
+
 
   // ======================
   // 3- BTNs Section
   // ======================
-  const addMoreBTN = (eo) => {
-    eo.preventDefault();
-  };
+
 
   const deleteBTN = (eo) => {
     eo.preventDefault();
@@ -82,7 +86,7 @@ const EditTask = () => {
           />
 
           {/* Sub-tasks section */}
-          <SubTasksSection user={user} stringId={stringId} completedCheckbox={completedCheckbox} />
+          <SubTasksSection user={user} stringId={stringId} completedCheckbox={completedCheckbox} trashIcon={trashIcon} />
 
           {/* Add-more BTN && Delete BTN */}
 
