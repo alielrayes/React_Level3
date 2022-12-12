@@ -33,6 +33,9 @@ const TitleSection = ({ user, stringId, titleInput }) => {
       <section className="title center">
         <h1>
           <input
+
+      style={{textDecoration: value.data().completed?     "line-through wavy #454545" : null}}
+
           ref={inputElement}
             onChange={async (eo) => {
               titleInput(eo);
