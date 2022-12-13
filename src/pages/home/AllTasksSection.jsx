@@ -22,14 +22,16 @@ const AllTasksSection = ({ user }) => {
   }
 
   if (value) {
-    console.log(value.docs.length);
+    console.log(value.docs);
 
     return (
       <section className="flex all-tasks mt">
+        {value.docs.length === 0 && (
+          <h1>Congratulations! You have completed your tasks ♥</h1>
+        )}
+
         {value.docs.map((item) => {
-        
-        
-        return (
+          return (
             <article key={item.data().id} dir="auto" className="one-task">
               <Link to={`/edit-task/${item.data().id}`}>
                 <h2> {item.data().title} </h2>
