@@ -7,9 +7,17 @@ import ReactLoading from "react-loading";
 import Moment from "react-moment";
 
 const AllTasksSection = ({ user }) => {
-  const [initialData, setinitialData] = useState(
-    query(collection(db, user.uid), orderBy("completed", "asc"))
+  const allTasks = query(collection(db, user.uid), orderBy("id"));
+  const completedTasks = query(
+    collection(db, user.uid),
+    where("completed", "==", true)
   );
+  const notCompleted = query(
+    collection(db, user.uid),
+    where("completed", "==", false)
+  );
+
+  const [initialData, setinitialData] = useState(allTasks);
   const [value, loading, error] = useCollection(initialData);
 
   const [isFullOpacity, setisFullOpacity] = useState(false);
@@ -68,24 +76,15 @@ const AllTasksSection = ({ user }) => {
             value={selectValue}
             onChange={(eo) => {
               if (eo.target.value === "aaa") {
+                setisFullOpacity(false);
                 setselectValue("aaa");
-                setinitialData(query(collection(db, user.uid), orderBy("id")));
+                setinitialData(allTasks);
               } else if (eo.target.value === "bbb") {
                 setselectValue("bbb");
-                setinitialData(
-                  query(
-                    collection(db, user.uid),
-                    where("completed", "==", true)
-                  )
-                );
+                setinitialData(completedTasks);
               } else if (eo.target.value === "ccc") {
                 setselectValue("ccc");
-                setinitialData(
-                  query(
-                    collection(db, user.uid),
-                    where("completed", "==", false)
-                  )
-                );
+                setinitialData(notCompleted);
               }
             }}
           >
