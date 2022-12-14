@@ -8,14 +8,16 @@ import Moment from "react-moment";
 
 const AllTasksSection = ({ user }) => {
   const [initialData, setinitialData] = useState(
-    query(collection(db, user.uid), where("completed", "==", true))
+    query(collection(db, user.uid), orderBy("completed", "asc"))
   );
   const [value, loading, error] = useCollection(initialData);
 
   const [isFullOpacity, setisFullOpacity] = useState(false);
 
+  const [selectValue, setselectValue] = useState("aaa");
+
   if (error) {
-    return <h1>ERROR</h1>;
+    return <h1>ERROR: {error.message}</h1>;
   }
 
   if (loading) {
@@ -27,8 +29,6 @@ const AllTasksSection = ({ user }) => {
   }
 
   if (value) {
- 
-
     return (
       <div>
         {/* OPIONS (filtered data) */}
@@ -36,47 +36,63 @@ const AllTasksSection = ({ user }) => {
           style={{ justifyContent: "center" }}
           className="parent-of-btns flex mtt"
         >
-          <button
-            style={{ opacity: isFullOpacity ? "1" : "0.3" }}
-            onClick={(params) => {
-              setisFullOpacity(true);
-              setinitialData(
-                query(collection(db, user.uid), orderBy("id", "desc"))
-              );
+          {selectValue === "aaa" && (
+            <div>
+              <button
+                style={{ opacity: isFullOpacity ? "1" : "0.3" }}
+                onClick={(params) => {
+                  setisFullOpacity(true);
+                  setinitialData(
+                    query(collection(db, user.uid), orderBy("id", "desc"))
+                  );
+                }}
+              >
+                Newest first
+              </button>
+
+              <button
+                style={{ opacity: isFullOpacity ? "0.3" : "1" }}
+                onClick={(params) => {
+                  setisFullOpacity(false);
+                  setinitialData(
+                    query(collection(db, user.uid), orderBy("id", "asc"))
+                  );
+                }}
+              >
+                Oldest first
+              </button>
+            </div>
+          )}
+
+          <select
+            value={selectValue}
+            onChange={(eo) => {
+              if (eo.target.value === "aaa") {
+                setselectValue("aaa");
+                setinitialData(query(collection(db, user.uid), orderBy("id")));
+              } else if (eo.target.value === "bbb") {
+                setselectValue("bbb");
+                setinitialData(
+                  query(
+                    collection(db, user.uid),
+                    where("completed", "==", true)
+                  )
+                );
+              } else if (eo.target.value === "ccc") {
+                setselectValue("ccc");
+                setinitialData(
+                  query(
+                    collection(db, user.uid),
+                    where("completed", "==", false)
+                  )
+                );
+              }
             }}
           >
-            Newest first
-          </button>
-
-          <button
-            style={{ opacity: isFullOpacity ? "0.3" : "1" }}
-            onClick={(params) => {
-              setisFullOpacity(false);
-              setinitialData(
-                query(collection(db, user.uid), orderBy("id", "asc"))
-              );
-            }}
-          >
-            Oldest first
-          </button>
-        
-        
-        
-        
-          <select onChange={(eo) => {
-            if (eo.target.value  === "aaa") {
-              
-            }
-
-          }} id="browsers">
             <option value="aaa"> All Tasks </option>
             <option value="bbb"> Completed </option>
             <option value="ccc"> Not Completed </option>
           </select>
-        
-        
-        
-        
         </section>
 
         <section className="flex all-tasks mt">
