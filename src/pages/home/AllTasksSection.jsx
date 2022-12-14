@@ -1,13 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useCollection } from "react-firebase-hooks/firestore";
-import { collection } from "firebase/firestore";
+import { collection, limit, orderBy, query } from "firebase/firestore";
 import { db } from "../../firebase/config";
 import ReactLoading from "react-loading";
 import Moment from "react-moment";
 
 const AllTasksSection = ({ user }) => {
-  const [value, loading, error] = useCollection(collection(db, user.uid));
+  const [value, loading, error] = useCollection(
+
+    query(    collection(db, user.uid), orderBy("id", "asc"),      )
+    
+    );
 
   if (error) {
     return <h1>ERROR</h1>;
