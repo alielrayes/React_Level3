@@ -34,6 +34,11 @@
   flex-wrap: wrap;
 }
 
+.home .task-link{
+  display: block;
+  height: 100%;
+}
+
 .home .all-tasks .one-task {
   border: 2px solid antiquewhite;
   margin: 40px 20px;
