@@ -12,6 +12,8 @@ const AllTasksSection = ({ user }) => {
   );
   const [value, loading, error] = useCollection(initialData);
 
+  const [isFullOpacity, setisFullOpacity] = useState(false);
+
   if (error) {
     return <h1>ERROR</h1>;
   }
@@ -30,9 +32,14 @@ const AllTasksSection = ({ user }) => {
     return (
       <div>
         {/* OPIONS (filtered data) */}
-        <section style={{justifyContent: "center"}} className="parent-of-btns flex mtt">
+        <section
+          style={{ justifyContent: "center" }}
+          className="parent-of-btns flex mtt"
+        >
           <button
+            style={{ opacity: isFullOpacity ? "1" : "0.3" }}
             onClick={(params) => {
+              setisFullOpacity(true)
               setinitialData(
                 query(collection(db, user.uid), orderBy("id", "desc"))
               );
@@ -42,7 +49,9 @@ const AllTasksSection = ({ user }) => {
           </button>
 
           <button
+          style={{ opacity: isFullOpacity ? "0.3" : "1" }}
             onClick={(params) => {
+              setisFullOpacity(false)
               setinitialData(
                 query(collection(db, user.uid), orderBy("id", "asc"))
               );
