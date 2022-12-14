@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useCollection } from "react-firebase-hooks/firestore";
-import { collection, limit, orderBy, query } from "firebase/firestore";
+import { collection, limit, orderBy, query, where } from "firebase/firestore";
 import { db } from "../../firebase/config";
 import ReactLoading from "react-loading";
 import Moment from "react-moment";
 
 const AllTasksSection = ({ user }) => {
   const [initialData, setinitialData] = useState(
-    query(collection(db, user.uid), orderBy("id", "asc"))
+    query(collection(db, user.uid), where("completed", "==", true))
   );
   const [value, loading, error] = useCollection(initialData);
 
@@ -27,7 +27,7 @@ const AllTasksSection = ({ user }) => {
   }
 
   if (value) {
-    console.log(value.docs);
+ 
 
     return (
       <div>
@@ -39,7 +39,7 @@ const AllTasksSection = ({ user }) => {
           <button
             style={{ opacity: isFullOpacity ? "1" : "0.3" }}
             onClick={(params) => {
-              setisFullOpacity(true)
+              setisFullOpacity(true);
               setinitialData(
                 query(collection(db, user.uid), orderBy("id", "desc"))
               );
@@ -49,9 +49,9 @@ const AllTasksSection = ({ user }) => {
           </button>
 
           <button
-          style={{ opacity: isFullOpacity ? "0.3" : "1" }}
+            style={{ opacity: isFullOpacity ? "0.3" : "1" }}
             onClick={(params) => {
-              setisFullOpacity(false)
+              setisFullOpacity(false);
               setinitialData(
                 query(collection(db, user.uid), orderBy("id", "asc"))
               );
@@ -59,11 +59,24 @@ const AllTasksSection = ({ user }) => {
           >
             Oldest first
           </button>
-          <select id="browsers">
-            <option value="ddddd"> All Tasks </option>
-            <option value="dddddd"> Completed </option>
-            <option value="dddddd"> Not Completed </option>
+        
+        
+        
+        
+          <select onChange={(eo) => {
+            if (eo.target.value  === "aaa") {
+              
+            }
+
+          }} id="browsers">
+            <option value="aaa"> All Tasks </option>
+            <option value="bbb"> Completed </option>
+            <option value="ccc"> Not Completed </option>
           </select>
+        
+        
+        
+        
         </section>
 
         <section className="flex all-tasks mt">
