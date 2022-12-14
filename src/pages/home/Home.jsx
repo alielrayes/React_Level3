@@ -167,17 +167,7 @@ const Home = () => {
           <Header />
 
           <main className="home">
-            {/* OPIONS (filtered data) */}
-            <section className="parent-of-btns flex mtt">
-              <button>Newest first</button>
 
-              <button>Oldest first</button>
-              <select id="browsers">
-                <option value="ddddd"> All Tasks </option>
-                <option value="dddddd"> Completed </option>
-                <option value="dddddd"> Not Completed </option>
-              </select>
-            </section>
 
             {/* SHOW all tasks */}
             <AllTasksSection user={user} />
