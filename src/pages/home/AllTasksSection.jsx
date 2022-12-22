@@ -5,8 +5,10 @@ import { collection, limit, orderBy, query, where } from "firebase/firestore";
 import { db } from "../../firebase/config";
 import ReactLoading from "react-loading";
 import Moment from "react-moment";
+import { useTranslation } from "react-i18next";
 
 const AllTasksSection = ({ user }) => {
+  const { t, i18n } = useTranslation();
   const allTasks = query(collection(db, user.uid), orderBy("id"));
   const completedTasks = query(
     collection(db, user.uid),
@@ -55,7 +57,9 @@ const AllTasksSection = ({ user }) => {
                   );
                 }}
               >
-                Newest first
+                {i18n.language === "fr" && "Le plus récent"}
+                {i18n.language === "en" && "Newest first"}
+                {i18n.language === "ar" && "الأحدث أولاً"}
               </button>
 
               <button
@@ -67,13 +71,15 @@ const AllTasksSection = ({ user }) => {
                   );
                 }}
               >
-                Oldest first
+                {i18n.language === "en" && "Oldest first"}
+                {i18n.language === "ar" && "الأقدم أولاً"}
+                {i18n.language === "fr" && "Le plus ancien"}
               </button>
             </div>
           )}
 
           <select
-          style={{alignSelf: "flex-end"}}
+            style={{ alignSelf: "flex-end" }}
             value={selectValue}
             onChange={(eo) => {
               if (eo.target.value === "aaa") {
@@ -89,9 +95,24 @@ const AllTasksSection = ({ user }) => {
               }
             }}
           >
-            <option value="aaa"> All Tasks </option>
-            <option value="bbb"> Completed </option>
-            <option value="ccc"> Not Completed </option>
+            <option value="aaa">
+              {" "}
+              {i18n.language === "ar" && "جميع المهام"}
+              {i18n.language === "en" && "All Tasks "}
+              {i18n.language === "fr" && "Toutes les tâches"}{" "}
+            </option>
+            <option value="bbb">
+              {" "}
+              {i18n.language === "ar" && "المهام المكتملة"}
+              {i18n.language === "en" && "Completed Tasks"}
+              {i18n.language === "fr" && "Tâches terminées"}{" "}
+            </option>
+            <option value="ccc">
+              {" "}
+              {i18n.language === "en" && "Not Completed Tasks"}
+              {i18n.language === "ar" && "المهام غير المكتملة"}
+              {i18n.language === "fr" && "Tâches non terminées"}{" "}
+            </option>
           </select>
         </section>
 

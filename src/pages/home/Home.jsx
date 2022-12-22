@@ -13,8 +13,10 @@ import { useState } from "react";
 import { doc, setDoc } from "firebase/firestore";
 import HomeModal from "./modal";
 import AllTasksSection from "./AllTasksSection";
+import { useTranslation } from "react-i18next";
 
 const Home = () => {
+  const { t, i18n } = useTranslation();
   const [user, loading, error] = useAuthState(auth);
   const sendAgain = () => {
     sendEmailVerification(auth.currentUser).then(() => {
@@ -175,12 +177,18 @@ const Home = () => {
             {/* Add new task BTN */}
             <section className="mt">
               <button
+              dir="auto"
                 onClick={() => {
                   setshowModal(true);
                 }}
                 className="add-task-btn"
               >
-                Add new task <i className="fa-solid fa-plus"></i>
+                   {i18n.language === "en" && "Add new task"}
+                {i18n.language === "ar" && "أضف مهمة جديدة"}
+                {i18n.language === "fr" && "Ajouter une nouvelle tâche"}
+                
+                
+                 <i className="fa-solid fa-plus"></i>
               </button>
             </section>
 
