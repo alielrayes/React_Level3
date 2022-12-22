@@ -1,14 +1,19 @@
 import React from "react";
-import    './Footer.css';
+import "./Footer.css";
 
 const Footer = () => {
   return (
-<div className="myfooter">
+    <div className="myfooter">
       <footer className="ali   ">
-        Designed and developed by Courses4Arab.com 
-         <span>  <i className="fa-solid fa-heart"></i> </span>
+        {/*     تم التصميم والبرمجة بواسطة على حسن     */}
+        Designed and developed by Courses4Arab.com
+        {/*   Conçu et développé par Courses4Arab.com  */}
+        <span>
+          {" "}
+          <i className="fa-solid fa-heart"></i>{" "}
+        </span>
       </footer>
-</div>
+    </div>
   );
 };
 

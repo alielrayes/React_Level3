@@ -8,8 +8,11 @@ import ThemeContext from "../context/ThemeContext";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase/config";
 import { signOut } from "firebase/auth";
+import { useTranslation } from "react-i18next";
 
 const Header = () => {
+  const { t, i18n } = useTranslation();
+
   const [user] = useAuthState(auth);
 
   const { theme, toggleTheme } = useContext(ThemeContext);
@@ -35,23 +38,42 @@ const Header = () => {
 
         <ul className="flex">
           <li className="main-list lang">
-            <p>language</p>
+          {t("lang")}
 
             <ul className="lang-box">
-              <li dir="rtl">
+              <li
+                onClick={() => {
+                  i18n.changeLanguage("ar");
+                }}
+                dir="rtl"
+              >
                 <p> العربية</p>
-                {false && <i className="fa-solid fa-check"></i>}
+                {i18n.language === "ar" && (
+                  <i className="fa-solid fa-check"></i>
+                )}
               </li>
 
-              <li>
+              <li
+                onClick={() => {
+                  i18n.changeLanguage("en");
+                }}
+              >
                 <p>English</p>
 
-    { true &&           <i className="fa-solid fa-check"></i>}
+                {i18n.language === "en" && (
+                  <i className="fa-solid fa-check"></i>
+                )}
               </li>
-              <li>
+              <li
+                onClick={() => {
+                  i18n.changeLanguage("fr");
+                }}
+              >
                 <p>French</p>
 
-                {false && <i className="fa-solid fa-check"></i>}
+                {i18n.language === "fr" && (
+                  <i className="fa-solid fa-check"></i>
+                )}
               </li>
             </ul>
           </li>
@@ -85,14 +107,22 @@ const Header = () => {
               }}
               className="main-list"
             >
-              <button className="main-link signout">Sign-out</button>
+
+
+              <button className="main-link signout">
+                {  t("signout")  }
+              </button>
+
+
+
+
             </li>
           )}
 
           {user && (
             <li className="main-list">
               <NavLink className="main-link" to="/about">
-                About
+                {t("support")}
               </NavLink>
             </li>
           )}
@@ -100,7 +130,7 @@ const Header = () => {
           {user && (
             <li className="main-list">
               <NavLink className="main-link" to="/profile">
-                Profile
+              {t("account")}
               </NavLink>
             </li>
           )}
