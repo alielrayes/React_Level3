@@ -1,3 +1,67 @@
+ul.lang-box{
+  display: none;
+ 
+  position: absolute;
+  left: -16px;
+  top: 45px;
+  z-index: 5;
+
+
+  
+  background-color: #1b1b1b;
+  border-top: 1px solid cyan;
+  width: 130px;
+  border-radius: 5px;
+}
+
+li.lang:hover ul.lang-box{
+  display: block;
+}
+
+
+
+ul.lang-box li{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+padding: 10px 8px;
+text-align: start;
+border-bottom: 1px solid black;
+font-size: 14px;
+transition: 0.15s;
+}
+
+
+ul.lang-box li:hover{
+  background-color: #151515;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+
+
+
+
+
+.main-list {
+ 
+  padding: 10px 15px 14px;
+ 
+  position: relative;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 .myheader .ali {
   background-color: teal;
 }
@@ -17,11 +81,6 @@
 }
 
 
-.main-list {
-  padding: 10px 20px;
-  font-size: 19px;
-  position: relative;
-}
 
 .main-link {
   padding: 8px 15px;
