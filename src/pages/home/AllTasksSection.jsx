@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useCollection } from "react-firebase-hooks/firestore";
-import { collection, limit, orderBy, query, where } from "firebase/firestore";
+import { collection,   orderBy, query, where } from "firebase/firestore";
 import { db } from "../../firebase/config";
 import ReactLoading from "react-loading";
 import Moment from "react-moment";
 import { useTranslation } from "react-i18next";
 
 const AllTasksSection = ({ user }) => {
-  const { t, i18n } = useTranslation();
+  const {   i18n } = useTranslation();
   const allTasks = query(collection(db, user.uid), orderBy("id"));
   const completedTasks = query(
     collection(db, user.uid),

@@ -1,7 +1,7 @@
 import Header from "../../comp/header";
 import Footer from "../../comp/Footer";
 import Loading from "../../comp/Loading";
-import Erroe404 from "../erroe404";
+
 import { Helmet } from "react-helmet-async";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "../../firebase/config";
@@ -17,7 +17,7 @@ import { useTranslation } from "react-i18next";
 import Snackbar from "shared/Snackbar";
 
 const Home = () => {
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
   const [user, loading, error] = useAuthState(auth);
   const sendAgain = () => {
     sendEmailVerification(auth.currentUser).then(() => {
@@ -85,7 +85,6 @@ const Home = () => {
 
   if (error) {
     return <h1>Error : {error.message}</h1>;
-    
   }
 
   if (loading) {
@@ -105,7 +104,7 @@ const Home = () => {
         <main>
           <h1 style={{ fontSize: "28px" }}>
             {" "}
-            <span>Welcome to React Level 2 🔥🔥🔥</span>{" "}
+            <span>Welcome to React Level 3 🔥🔥🔥</span>{" "}
           </h1>
           <p className="pls">
             Please{" "}
@@ -170,26 +169,23 @@ const Home = () => {
           <Header />
 
           <main className="home">
-
-
             {/* SHOW all tasks */}
             <AllTasksSection user={user} />
 
             {/* Add new task BTN */}
             <section className="mt">
               <button
-              dir="auto"
+                dir="auto"
                 onClick={() => {
                   setshowModal(true);
                 }}
                 className="add-task-btn"
               >
-                   {i18n.language === "en" && "Add new task"}
+                {i18n.language === "en" && "Add new task"}
                 {i18n.language === "ar" && "أضف مهمة جديدة"}
                 {i18n.language === "fr" && "Ajouter une nouvelle tâche"}
-                
-                
-                 <i className="fa-solid fa-plus"></i>
+
+                <i className="fa-solid fa-plus"></i>
               </button>
             </section>
 

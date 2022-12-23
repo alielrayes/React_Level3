@@ -3,10 +3,10 @@ import { useDocument } from "react-firebase-hooks/firestore";
 import { arrayUnion, doc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase/config";
 import Moment from "react-moment";
-import { async } from "@firebase/util";
+ 
 
 const SubTasksSection = ({ user, stringId, completedCheckbox, trashIcon }) => {
-  const [value, loading, error] = useDocument(doc(db, user.uid, stringId));
+  const [value] = useDocument(doc(db, user.uid, stringId));
   const [showAddNewTask, setshowAddNewTask] = useState(false);
   const [subTitle, setsubTitle] = useState("");
 

@@ -4,7 +4,7 @@ import "./Footer.css";
 import { useTranslation } from "react-i18next";
 
 const Footer = () => {
-  const { t, i18n } = useTranslation();
+  const {  i18n } = useTranslation();
 
   if (i18n.language === "ar") {
     return (

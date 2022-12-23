@@ -3,7 +3,7 @@ import Footer from "../comp/Footer";
 import Loading from "../comp/Loading";
 
 import { Helmet } from "react-helmet-async";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase/config";
@@ -15,7 +15,7 @@ const About = () => {
   const [user, loading, error] = useAuthState(auth);
   const navigate = useNavigate();
 
-  const [array, setarray] = useState(["html", "css", "react"]);
+ 
 
   useEffect(() => {
     if (!user && !loading) {

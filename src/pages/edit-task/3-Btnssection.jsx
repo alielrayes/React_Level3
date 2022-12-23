@@ -4,7 +4,7 @@ import { collection } from "firebase/firestore";
 import { db } from "../../firebase/config";
 
 const Btnssection = ({ user, stringId, deleteBTN }) => {
-  const [value, loading, error] = useCollection(collection(db, user.uid));
+  const [value] = useCollection(collection(db, user.uid));
 
 if (value) {
   return (
