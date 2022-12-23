@@ -2,7 +2,7 @@ import React from "react";
 import { Helmet } from "react-helmet-async";
 
 // closeModal => function to close the model
-const Modal = ({ closeModal, children }) => {
+const Modal = ({ closeModal, children, backgroundColor="whitesmoke" }) => {
   return (
     <div className="parent-of-model">
       <Helmet>
@@ -14,7 +14,6 @@ const Modal = ({ closeModal, children }) => {
             bottom: 0;
             right: 0;
             left: 0;
-          
             background-color: rgba(0, 0, 0, 0.45);
             display: flex;
             align-items: center;
@@ -22,7 +21,7 @@ const Modal = ({ closeModal, children }) => {
           }
 
           .modal{
-            background-color: whitesmoke;
+          
             width: 400px;
             height: 333px;
             border-radius: 12px;
@@ -47,7 +46,7 @@ const Modal = ({ closeModal, children }) => {
           `}</style>
       </Helmet>
 
-      <form className={`modal`}>
+      <form style={{  backgroundColor: backgroundColor}} className={`modal`}>
         <div
           onClick={() => {
             closeModal();

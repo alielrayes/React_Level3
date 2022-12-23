@@ -14,6 +14,7 @@ import { doc, setDoc } from "firebase/firestore";
 import HomeModal from "./modal";
 import AllTasksSection from "./AllTasksSection";
 import { useTranslation } from "react-i18next";
+import Snackbar from "shared/Snackbar";
 
 const Home = () => {
   const { t, i18n } = useTranslation();
@@ -206,15 +207,7 @@ const Home = () => {
               />
             )}
 
-            <p
-              style={{
-                right: showMessage ? "20px" : "-100vw",
-              }}
-              className="show-message"
-            >
-              Task added successfully{" "}
-              <i className="fa-regular fa-circle-check"></i>
-            </p>
+            <Snackbar showMessage={showMessage} />
           </main>
 
           <Footer />
