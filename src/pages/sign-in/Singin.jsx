@@ -13,7 +13,6 @@ import { useNavigate } from "react-router-dom";
 import "./signin.css";
 import Modal from "shared/Modal";
 import ReactLoading from "react-loading";
- 
 
 const Signin = () => {
   const [showLoading, setshowLoading] = useState(false);
@@ -161,7 +160,7 @@ const Signin = () => {
             )}
           </button>
           <p className="account">
-            Don't hava an account <Link to="/signup"> Sign-up</Link>
+            Don't hava an account? <Link to="/signup"> Sign-up</Link>
           </p>
 
           <p

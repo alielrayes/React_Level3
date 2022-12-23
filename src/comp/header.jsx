@@ -81,7 +81,7 @@ const Header = () => {
           {!user && (
             <li className="main-list">
               <NavLink className="main-link" to="/signin">
-                Sign-in
+                {t("signin")}
               </NavLink>
             </li>
           )}
@@ -89,7 +89,7 @@ const Header = () => {
           {!user && (
             <li className="main-list">
               <NavLink className="main-link" to="/signup">
-                Sign-up
+                {t("signup")}
               </NavLink>
             </li>
           )}

@@ -103,19 +103,58 @@ const Home = () => {
 
         <main>
           <h1 style={{ fontSize: "28px" }}>
-            {" "}
-            <span>Welcome to React Level 3 🔥🔥🔥</span>{" "}
+            {i18n.language === "en" && (
+              <span>Welcome to React Level 3 🔥🔥</span>
+            )}
+
+            {i18n.language === "ar" && (
+              <span> 🔥🔥 المستوى الثالث من كورس ريأكت </span>
+            )}
+
+            {i18n.language === "fr" && (
+              <span>Bienvenue au niveau 3 de React 🔥🔥</span>
+            )}
           </h1>
-          <p className="pls">
-            Please{" "}
-            <Link style={{ fontSize: "30px" }} to="/signin">
-              sign in
-            </Link>{" "}
-            to continue...{" "}
-            <span>
-              <i className="fa-solid fa-heart"></i>
-            </span>
-          </p>
+          {i18n.language === "en" && (
+            <p className="pls">
+              Please{" "}
+              <Link style={{ fontSize: "30px" }} to="/signin">
+                sign in
+              </Link>{" "}
+              to continue...{" "}
+              <span>
+                <i className="fa-solid fa-heart"></i>
+              </span>
+            </p>
+          )}
+
+          {i18n.language === "ar" && (
+            <p dir="rtl" className="pls mt">
+              من فضلك قم ب
+              <Link style={{ fontSize: "30px" }} to="/signin">
+                {" "}
+                تسجيل الدخول{" "}
+              </Link>{" "}
+              للإستمرار{" "}
+              <span>
+                <i className="fa-solid fa-heart"></i>
+              </span>
+            </p>
+          )}
+
+          {i18n.language === "fr" && (
+            <p className="pls mt">
+              Veuillez
+              <Link style={{ fontSize: "30px" }} to="/signin">
+                {" "}
+                 vous connecter {" "}
+              </Link>{" "}
+              pour continuer{" "}
+              <span>
+                <i className="fa-solid fa-heart"></i>
+              </span>
+            </p>
+          )}
         </main>
 
         <Footer />
